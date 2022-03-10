@@ -1,15 +1,5 @@
-// Belly Button Biodiversity - Plotly.js
-//samples.json> got data for names, metadata, samples
-// BONUS: Build the Gauge Chart
- 
-
 // Color palette for Gauge Chart
 var arrColorsG = ["#5899DA", "#E8743B", "#19A979", "#ED4A7B", "#945ECF", "#13A4B4", "#525DF4", "#BF399E", "#6C8893", "white"];
-
-
-// Use`d 3.json` to fetch the metadata for a sample
-// Hint: Inside the loop, you will need to use d3 to append new
-// tags for each key-value in the metadata.
 function buildMetadata(sample) {
   d3.json("data/samples.json").then((data) => {
     var metadata= data.metadata;
@@ -35,20 +25,16 @@ function buildGaugeChart(sample) {
   d3.json("data/samples.json").then(data =>{
 
     var objs = data.metadata;
-    //console.log("objs", objs);
-
     var matchedSampleObj = objs.filter(sampleData => 
       sampleData["id"] === parseInt(sample));
-    //console.log("buildGaugeChart matchedSampleObj", matchedSampleObj);
-
     gaugeChart(matchedSampleObj[0]);
  });   
 }
 
 
-//======================================================//
-//=============== Build a GAUGE Chart ==================//
-//======================================================//
+
+//Building a GAUGE Chart //
+
 function gaugeChart(data) {
   console.log("gaugeChart", data);
 
@@ -121,7 +107,7 @@ function gaugeChart(data) {
 
 
 
-//=============Bubble&Bar Chart Functions=======================//
+//Bubble&Bar Chart Functions
 
 function buildCharts(sample) {
 
@@ -136,9 +122,7 @@ d3.json("data/samples.json").then((data) => {
   var labels = result.otu_labels;
   var values = result.sample_values;
 
-//======================================================//
-//================ Build a BUBBLE Chart=================// 
-//======================================================//
+ //Build a BUBBLE Chart//
 
   var LayoutBubble = {
     margin: { t: 0 },
@@ -162,9 +146,7 @@ d3.json("data/samples.json").then((data) => {
   Plotly.newPlot("bubble", DataBubble, LayoutBubble);
 
 
-//=========================================================//
-//===============  Build a BAR Chart=======================//
-//=========================================================// 
+//Build a BAR Chart
   var bar_data =[
     {
       y:ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
@@ -186,7 +168,7 @@ d3.json("data/samples.json").then((data) => {
 }
  
 
-//============= Function init =======================//
+//Function init
 
 function init() {
 // Grab a reference to the dropdown select element
